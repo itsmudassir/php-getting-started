@@ -1,9 +1,9 @@
 
 <?php
-ini_set('display_errors', 1);
-ini_set('log_errors', 1);
+//ini_set('display_errors', 1);
+//ini_set('log_errors', 1);
 ini_set('error_log', dirname(__FILE__).'/log.txt');
-error_reporting(E_All);
+//error_reporting(E_All);
     include("Messenger.php");
     $access_token = "EAAEUIkwDq88BAAsXpq31x9NGOZCfh6oizH4JFzMvScNbd5ZAZAqlZCe5vj1L4ZBqxKWiaAnhi0NUnohgLHZCZBZAivqVVX74X1vnS4D6D0amvjMmhxeCZBy7hvktCu1jVjdm1RYO8QDP51VS8yi9M69tpat8J4vv5sqwTpNKztOaNtenTnGOdXXgj";
     $apiKey = $access_token;
