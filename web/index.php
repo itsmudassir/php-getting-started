@@ -74,7 +74,7 @@ $access_token = "EAAEUIkwDq88BAAsXpq31x9NGOZCfh6oizH4JFzMvScNbd5ZAZAqlZCe5vj1L4Z
 
 
 // Your webhook varification token
-$verify_token = "mudassir";
+$verify_token = "lydia";
 $hub_verify_token = null;
 if(isset($_REQUEST['hub_challenge'])) {
     $challenge = $_REQUEST['hub_challenge'];
