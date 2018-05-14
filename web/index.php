@@ -69,7 +69,7 @@ $rewardFlag=false;
  * Webhook for Time Bot- Facebook Messenger Bot
  */
 // Your Page Access Token
-$access_token = "EAAEUIkwDq88BAAsXpq31x9NGOZCfh6oizH4JFzMvScNbd5ZAZAqlZCe5vj1L4ZBqxKWiaAnhi0NUnohgLHZCZBZAivqVVX74X1vnS4D6D0amvjMmhxeCZBy7hvktCu1jVjdm1RYO8QDP51VS8yi9M69tpat8J4vv5sqwTpNKztOaNtenTnGOdXXgj";
+$access_token = "EAACVhaMuOqQBAFOCN7j2yLldomMKls22QRiodLidvigUvUfmRU29MV8lGDlBtMne0CHpjV7nkw8zWS75lcdGTCbN37HG1rHTVHjFlANZARKO0w9JeIJyWmaHaScCdbXyIbBDAeKQzbdLo7pknRToaH1d8QuasDOIgvDNANAZDZD";
 
 
 
