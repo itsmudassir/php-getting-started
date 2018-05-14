@@ -5,7 +5,7 @@ ini_set('log_errors', 1);
 ini_set('error_log', dirname(__FILE__).'/log.txt');
 error_reporting(E_All);
     include("Messenger.php");
-    $access_token = "EAAbJfICyb10BAOoa4CUyi4JFYavnwcLUIeRi4zILDeubN9xZAOEnoMVa0FZCcbQTcxCG38HLv2BMWZCvzFZBLjfEgxghVANEzsvRmG3zZCICZCmHNInn7wffZA5FiGoZCafB2vUZC1bBapUa1Ov6MgWKgYpaSVnaJ08O1P6lZAIDiG1dV0gZBCIedG3";
+    $access_token = "EAAbJfICyb10BAJzIrmjWLXjezeDDtZBnuPebyR1FbGPQDT5QDf3jVh6w4useguJzSOQ1TmpLX8AccyokY76xO58QnIyWZAnlcpaQUkWRAqiQGZAKZCudnBehq64Yaq0HqjS2cbKHj8YkwxiHrHjicBXoI6sbeXKHcnNWyjwNZBkkfm38jksoz";
     $apiKey = $access_token;
     
     // Instances the Facebook class
@@ -69,7 +69,7 @@ $rewardFlag=false;
  * Webhook for Time Bot- Facebook Messenger Bot
  */
 // Your Page Access Token
-$access_token = "EAAbJfICyb10BAOoa4CUyi4JFYavnwcLUIeRi4zILDeubN9xZAOEnoMVa0FZCcbQTcxCG38HLv2BMWZCvzFZBLjfEgxghVANEzsvRmG3zZCICZCmHNInn7wffZA5FiGoZCafB2vUZC1bBapUa1Ov6MgWKgYpaSVnaJ08O1P6lZAIDiG1dV0gZBCIedG3";
+$access_token = "EAAbJfICyb10BAJzIrmjWLXjezeDDtZBnuPebyR1FbGPQDT5QDf3jVh6w4useguJzSOQ1TmpLX8AccyokY76xO58QnIyWZAnlcpaQUkWRAqiQGZAKZCudnBehq64Yaq0HqjS2cbKHj8YkwxiHrHjicBXoI6sbeXKHcnNWyjwNZBkkfm38jksoz";
 
 
 
