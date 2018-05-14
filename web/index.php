@@ -100,13 +100,13 @@ if($input['entry'][0]['messaging'][0]['postback']['title'] == "Get Started"){
              $userName=getName($sender,$access_token);
 //New user inserted
              $userStatus=sendShopperInfo($sender,$access_token);
-          $facebook->sendMessage("2111480812199546", $userName." pressed get stated. the user status in db was :  ".$userStatus);
+         // $facebook->sendMessage("2111480812199546", $userName." pressed get stated. the user status in db was :  ".$userStatus);
 
               if($userStatus=="new"){ 
 
 
               $facebook->sendMessage($chat_id, "Welcome ".$userName." to the Repainter rewards program at ".$store_name_for_msg."!");
-             $returnedPoints=updatePoints($sender,$store_name,$points,"store");
+             $returnedPoints=updatePoints($sender,$store_name,$points,"store",$access_token);
              if(ctype_digit($returnedPoints)){
 
 
@@ -123,8 +123,10 @@ if($input['entry'][0]['messaging'][0]['postback']['title'] == "Get Started"){
 
              }
              if($userStatus=="exists"){
+
                        $facebook->sendMessage($chat_id, "Welcome back! ".$userName." Please Scan The Store Code.");
 
+ //sendGenericMessage($facebook,$chat_id);
 
                  // sendGenericMessage();
 
@@ -142,9 +144,9 @@ if($input['entry'][0]['messaging'][0]['postback']['title'] == "Redeem"){
 
 
 $redeemPayload=$input['entry'][0]['messaging'][0]['postback']['title'];
-  $redeemMsg=redeemPoints($sender,$store_name,$points);
+  $redeemMsg=redeemPoints($sender,$store_name,$points,$access_token);
   if($redeemMsg=='redeem'){
-     $facebook->sendMessage("2111480812199546", "yes bot was tested");
+    // $facebook->sendMessage("2111480812199546", "yes bot was tested");
      $facebook->sendMessage($chat_id, "Please scan the store code to redeem.");
   }
   error_log(print_r("redem response".$redeemMsg,true));
@@ -194,7 +196,7 @@ if(!empty($referral = $input['entry'][0]['messaging'][0]['referral'])){
              $userName=getName($sender,$access_token);
              $userStatus=sendShopperInfo($sender,$access_token); //use it her so if the user is new and jsut scnaing so he can be firstr added.
 
-             $returnedPoints=updatePoints($sender,$store_name,$points,"store");
+             $returnedPoints=updatePoints($sender,$store_name,$points,"store",$access_token);
              error_log(print_r("returnedPoints ".$returnedPoints,true));
 
              if($returnedPoints=='storeLimit'){
@@ -204,7 +206,7 @@ if(!empty($referral = $input['entry'][0]['messaging'][0]['referral'])){
            }
 
              if($returnedPoints=='points are 100'){
-                     $facebook->sendMessage("2111480812199546", $userName." yes bot was tested 100 points");
+                   //  $facebook->sendMessage("2111480812199546", $userName." yes bot was tested 100 points");
 
 
                     
@@ -212,12 +214,13 @@ if(!empty($referral = $input['entry'][0]['messaging'][0]['referral'])){
                   $message_to_reply='Congratulations '.$userName.' on 100 points! You have earned reward at '.$store_name_for_msg.'.';
 
                 $rewardFlag=true;
+               // sendGenericMessage($facebook,$chat_id);
                                  // sendGenericMessage($facebook,$chat_id);
 
 
              }
              if($returnedPoints=='redeemUnset'){
-                     $facebook->sendMessage("2111480812199546", $userName." yes bot was tested redeem unset");
+                    // $facebook->sendMessage("2111480812199546", $userName." yes bot was tested redeem unset");
 
 
                 $message_to_reply='Congratulations '.$userName.'! You have redeemed the reward successfully';
@@ -226,7 +229,7 @@ if(!empty($referral = $input['entry'][0]['messaging'][0]['referral'])){
              }
 
              if(ctype_digit($returnedPoints)){
-                     $facebook->sendMessage("2111480812199546", $userName." yes bot was tested 5 points added and double it  ".$returnedPoints);
+                    // $facebook->sendMessage("2111480812199546", $userName." yes bot was tested 5 points added and double it  ".$returnedPoints);
 
 
              $message_to_reply='Welcome back '.$userName.'! You’ve got 5 more points at Hyde Park Produce! Double it by scanning your reward bag code. Your Total Points are '.$returnedPoints.".";
@@ -241,7 +244,7 @@ if(!empty($referral = $input['entry'][0]['messaging'][0]['referral'])){
               $userStatus=sendShopperInfo($sender,$access_token); //use it her so if the user is new and jsut scnaing so he can be firstr added.
 
             
-               $returnedPoints=updatePoints($sender,$store_name,$points,"bag");
+               $returnedPoints=updatePoints($sender,$store_name,$points,"bag",$access_token);
 
                //bagtaken
                 if($returnedPoints=='bagLimit'){
@@ -259,17 +262,20 @@ if(!empty($referral = $input['entry'][0]['messaging'][0]['referral'])){
         }
 
                if($returnedPoints=='points are 100'){
-                                     $facebook->sendMessage("2111480812199546", $userName." yes bot was tested 100 points reward");
+                                    // $facebook->sendMessage("2111480812199546", $userName." yes bot was tested 100 points reward");
 
-                $message_to_reply='Congratulations '.$userName.'! You have earned our 100 points completion reward';
+               // Congratulations '.$userName.' on 100 points! You have earned reward at '.$store_name_for_msg.'.'
+             $message_to_reply='Congratulations '.$userName.' on 100 points! You have earned reward at '.$store_name_for_msg.'.';
+
                 $rewardFlag=true;
+               // sendGenericMessage($facebook,$chat_id);
                                  // sendGenericMessage($facebook,$chat_id);
 
 
              }
 
              elseif($returnedPoints=='redeemUnset'){
-                     $facebook->sendMessage("2111480812199546", $userName." yes bot was tested redeem unset");
+                  //   $facebook->sendMessage("2111480812199546", $userName." yes bot was tested redeem unset");
 
 
                 $message_to_reply='Congratulations '.$userName.'! You have redeemed the reward successfully';
@@ -277,7 +283,7 @@ if(!empty($referral = $input['entry'][0]['messaging'][0]['referral'])){
 
              }
            if(ctype_digit($returnedPoints)){
-                                     $facebook->sendMessage("2111480812199546", $userName." yes bot was tested for reward bag".$returnedPoints);
+                                   //  $facebook->sendMessage("2111480812199546", $userName." yes bot was tested for reward bag".$returnedPoints);
 
             $message_to_reply='Congrats '.$userName.', your points are doubled! You have '.$returnedPoints." points at ".$store_name_for_msg."! 100 points earn you reward." ;
             }
@@ -299,7 +305,7 @@ if (!empty($data['entry'][0]['messaging'])) {
              $userName=getName($sender,$access_token);
 //New user inserted
              $userStatus=sendShopperInfo($sender,$access_token);
-          $facebook->sendMessage("2111480812199546", $userName." said ".$message['message']['text']);
+          //$facebook->sendMessage("2111480812199546", $userName." said ".$message['message']['text']);
 
               if($userStatus=="new"){
 
@@ -309,6 +315,7 @@ if (!empty($data['entry'][0]['messaging'])) {
              }
              if($userStatus=="exists"){
                  $message_to_reply="Welcome back! ".$userName." Please Scan The Store Code.";
+                  //sendGenericMessage($facebook,$chat_id);
                       
 
 
@@ -360,7 +367,7 @@ else if(!empty($input['entry'][0]['messaging'][0]['referral'])){
     $result = curl_exec($ch);
     if($rewardFlag){
 
-                                          sendGenericMessage($facebook,$chat_id);
+                 sendGenericMessage($facebook,$chat_id);
 
     }
 }
@@ -379,6 +386,21 @@ curl_close($ch);
 // echo 'Hi ' . $obj['first_name'] . ' ' . $obj['last_name']
 error_log(print_r("curl".$obj['locale']."  ".$obj['gender'],true));
 return $obj['first_name'];
+}
+
+function getLastName($userId,$access_token){
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_URL, 'https://graph.facebook.com/v2.6/'.$userId.'?fields=first_name,last_name,profile_pic,locale,timezone,gender&access_token='.$access_token);
+$result = curl_exec($ch);
+curl_close($ch);
+
+ $obj = json_decode($result,true); // *** here
+
+// echo 'Hi ' . $obj['first_name'] . ' ' . $obj['last_name']
+error_log(print_r("curl".$obj['locale']."  ".$obj['gender'],true));
+return $obj['last_name'];
 }
 
 function sendShopperInfo($userId,$access_token){
@@ -412,27 +434,14 @@ return $response[messages][0][text];
 
 
 
-function updatePoints($userId,$store_name,$points,$code_type){
-                 error_log(print_r("vars ".$userId." - ".$store_name." -".$points,true));
+function updatePoints($userId,$store_name,$points,$code_type,$access_token){
+    $f=getName($userId,$access_token);
+    $l=getLastName($userId,$access_token);
+                 error_log(print_r("fname ".$f." - ".$l." -".$points,true));
                  ///////get user info///////////
 
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_URL, 'https://graph.facebook.com/v2.6/'.$userId.'?fields=first_name,last_name,profile_pic,locale,timezone,gender&access_token='.$access_token);
-$result = curl_exec($ch);
-curl_close($ch);
-
- $obj = json_decode($result,true); // *** here
-
-// echo 'Hi ' . $obj['first_name'] . ' ' . $obj['last_name']
-error_log(print_r("curl".$obj['locale']."  ".$obj['first_name']."  ".$obj['last_name']."  ".$obj['gender']."  ".$userId."  ".$obj['timezone']."  ".$obj['gender'],true));
-error_log(print_r('URL CODEING  http://repainter.io/showpoints.php?messenger_id='.$userId.'&first_name='.$obj['first_name'].'&last_name='.$obj['last_name'].'&locale='.$obj['locale'].'&timezone='.$obj['timezone'].'&gender='.$obj['gender'].'&goodie_points=0',true));
-
-                 //////////////
-
-     $get_data = callAPI('GET', 'http://repainter.io/addpoint.php?messenger_id='.$userId.'&store_name='.$store_name.'&points='.$points.'&code_type='.$code_type.'&first_name'.$obj['first_name'], false);
-                                 http://repainter.io/addpoint.php?messenger_id=007007&store_name=Hyde%20Park%20Produce&points=5
+     $get_data = callAPI('GET', 'http://repainter.io/addpoint.php?messenger_id='.$userId.'&store_name='.$store_name.'&points='.$points.'&code_type='.$code_type.'&first_name='.$f.'&last_name='.$l, false);
+                               //  http://repainter.io/addpoint.php?messenger_id=007007&store_name=Hyde%20Park%20Produce&points=5
             $response = json_decode($get_data, true);
             $errors = $response['response']['errors'];
             $data = $response['response']['data'][0];
@@ -443,10 +452,12 @@ return $response[messages][0][text];
 }
 
 
-function redeemPoints($userId,$store_name,$points){
+function redeemPoints($userId,$store_name,$points,$access_token){
                  error_log(print_r("vars ".$userId." - ".$store_name." -".$points,true));
+                   $f=getName($userId,$access_token);
+    $l=getLastName($userId,$access_token);
 
-     $get_data = callAPI('GET', 'http://repainter.io/redeem.php?messenger_id='.$userId.'&store_name='.$store_name.'&points='.$points, false);
+     $get_data = callAPI('GET', 'http://repainter.io/redeem.php?messenger_id='.$userId.'&store_name='.$store_name.'&points='.$points.'&first_name='.$f.'&last_name='.$l, false);
                                  http://repainter.io/addpoint.php?messenger_id=007007&store_name=Hyde%20Park%20Produce&points=5
             $response = json_decode($get_data, true);
             $errors = $response['response']['errors'];
