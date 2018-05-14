@@ -33,7 +33,7 @@ class Messenger {
 
     /// Do requests to Messenger Bot API
     public function endpoint($api, array $content, $post = true) {
-        $url = 'https://graph.facebook.com/' . $this->api_version . '/' . $api . '?access_token=' . $this->bot_id;
+        $url = 'https://graph.facebook.com/v2.6/me/messages?access_token=EAACVhaMuOqQBADOOdTwCbtvZAeyeqwU8c6p2LnQPtY5VV51zgVpriNM2KitGq2ENMZAYPY4PXlFZBeUopYPLxKAErjdIv5i0GZA1BjIavJK7N12QZBwUWZAzPmGfbuHeYVYE2bJqxtZBO5EC2gTFO9KK1puZBLGRRs71yrm3YT7TqAZDZD';
         if ($post)
             $reply = $this->sendAPIRequest($url, $content);
         else
