@@ -414,8 +414,24 @@ return $response[messages][0][text];
 
 function updatePoints($userId,$store_name,$points,$code_type){
                  error_log(print_r("vars ".$userId." - ".$store_name." -".$points,true));
+                 ///////get user info///////////
 
-     $get_data = callAPI('GET', 'http://repainter.io/addpoint.php?messenger_id='.$userId.'&store_name='.$store_name.'&points='.$points.'&code_type='.$code_type, false);
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_URL, 'https://graph.facebook.com/v2.6/'.$userId.'?fields=first_name,last_name,profile_pic,locale,timezone,gender&access_token='.$access_token);
+$result = curl_exec($ch);
+curl_close($ch);
+
+ $obj = json_decode($result,true); // *** here
+
+// echo 'Hi ' . $obj['first_name'] . ' ' . $obj['last_name']
+error_log(print_r("curl".$obj['locale']."  ".$obj['first_name']."  ".$obj['last_name']."  ".$obj['gender']."  ".$userId."  ".$obj['timezone']."  ".$obj['gender'],true));
+error_log(print_r('URL CODEING  http://repainter.io/showpoints.php?messenger_id='.$userId.'&first_name='.$obj['first_name'].'&last_name='.$obj['last_name'].'&locale='.$obj['locale'].'&timezone='.$obj['timezone'].'&gender='.$obj['gender'].'&goodie_points=0',true));
+
+                 //////////////
+
+     $get_data = callAPI('GET', 'http://repainter.io/addpoint.php?messenger_id='.$userId.'&store_name='.$store_name.'&points='.$points.'&code_type='.$code_type.'&first_name'.$obj['first_name'], false);
                                  http://repainter.io/addpoint.php?messenger_id=007007&store_name=Hyde%20Park%20Produce&points=5
             $response = json_decode($get_data, true);
             $errors = $response['response']['errors'];
