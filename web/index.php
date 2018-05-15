@@ -111,7 +111,7 @@ if($input['entry'][0]['messaging'][0]['postback']['title'] == "Get Started"){
 
 
 
-              $facebook->sendMessage($chat_id, "You have 5 points! Show the pic below to the cashier to pick up one free reward bag and double your points.");
+              $facebook->sendMessage($chat_id, "You have 5 points! Show the pic below to the cashier to pick up one free reward bag. Scan it to double your points!");
               sendStoreLogo($facebook,$chat_id);
 }
                if($returnedPoints=='storeLimit'){
