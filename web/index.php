@@ -105,7 +105,7 @@ if($input['entry'][0]['messaging'][0]['postback']['title'] == "Get Started"){
               if($userStatus=="new"){ 
 
 
-              $facebook->sendMessage($chat_id, "Welcome ".$userName." to the Repainter rewards program at ".$store_name_for_msg."!");
+              $facebook->sendMessage($chat_id, "Welcome ".$userName." to the repainter rewards program!");
              $returnedPoints=updatePoints($sender,$store_name,$points,"store");
              if(ctype_digit($returnedPoints)){
 
@@ -208,8 +208,10 @@ if(!empty($referral = $input['entry'][0]['messaging'][0]['referral'])){
 
 
                     
-                //$message_to_reply='Congratulations '.$userName.'! You have earned our 100 points completion reward. Please show the below picture to store cashier and tap on redeem button blow.';
-                  $message_to_reply='Congratulations '.$userName.' on 100 points! You have earned reward at '.$store_name_for_msg.'.';
+             $rewardName=getRewardName($store_name);
+
+ $message_to_reply='Congratulations '.$userName.' on 100 points! You have earned '.$rewardName.' at '.$store_name_for_msg.'.';
+            
 
                 $rewardFlag=true;
                                  // sendGenericMessage($facebook,$chat_id);
@@ -220,7 +222,7 @@ if(!empty($referral = $input['entry'][0]['messaging'][0]['referral'])){
                   //   $facebook->sendMessage("2111480812199546", $userName." yes bot was tested redeem unset");
 
 
-                $message_to_reply='Congratulations '.$userName.'! You have redeemed the reward successfully';
+                $message_to_reply='Congratulations '.$userName.'! You have successfully redeemed your $5 gift card';
 
 
              }
@@ -229,7 +231,7 @@ if(!empty($referral = $input['entry'][0]['messaging'][0]['referral'])){
                   //   $facebook->sendMessage("2111480812199546", $userName." yes bot was tested 5 points added and double it  ".$returnedPoints);
 
 
-             $message_to_reply='Welcome back '.$userName.'! You’ve got 5 more points at Hyde Park Produce! Double it by scanning your reward bag code. Your Total Points are '.$returnedPoints.".";
+             $message_to_reply='Welcome back '.$userName.'! You’ve got '.$returnedPoints.' points at Hyde Park Produce. That’s +5 points. Double it by scanning the bag code!';
          }
 }
 
@@ -260,8 +262,9 @@ if(!empty($referral = $input['entry'][0]['messaging'][0]['referral'])){
 
                if($returnedPoints=='points are 100'){
                                 //     $facebook->sendMessage("2111480812199546", $userName." yes bot was tested 100 points reward");
+                                    $rewardName=getRewardName($store_name);
 
-                  $message_to_reply='Congratulations '.$userName.' on 100 points! You have earned reward at '.$store_name_for_msg.'.';
+ $message_to_reply='Congratulations '.$userName.' on 100 points! You have earned '.$rewardName.' at '.$store_name_for_msg.'.';
                 $rewardFlag=true;
                                  // sendGenericMessage($facebook,$chat_id);
 
@@ -272,7 +275,7 @@ if(!empty($referral = $input['entry'][0]['messaging'][0]['referral'])){
                    //  $facebook->sendMessage("2111480812199546", $userName." yes bot was tested redeem unset");
 
 
-                $message_to_reply='Congratulations '.$userName.'! You have redeemed the reward successfully';
+                $message_to_reply='Congratulations '.$userName.'! You have successfully redeemed your $5 gift card';
                                 
 
              }
@@ -280,7 +283,7 @@ if(!empty($referral = $input['entry'][0]['messaging'][0]['referral'])){
                                      //$facebook->sendMessage("2111480812199546", $userName." yes bot was tested for reward bag".$returnedPoints);
                                                                $rewardName=getRewardName($store_name);
 
-            $message_to_reply='Congrats '.$userName.', your points are doubled! You have '.$returnedPoints." points at ".$store_name_for_msg."! 100 points earn you ".$rewardName."." ;
+            $message_to_reply='Congrats '.$userName.', your points are doubled! You have '.$returnedPoints." points at ".$store_name_for_msg."! 100 points earns you ".$rewardName."." ;
             }
 
 }
