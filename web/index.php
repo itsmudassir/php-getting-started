@@ -231,7 +231,7 @@ if(!empty($referral = $input['entry'][0]['messaging'][0]['referral'])){
                   //   $facebook->sendMessage("2111480812199546", $userName." yes bot was tested 5 points added and double it  ".$returnedPoints);
 
 
-             $message_to_reply='Welcome back '.$userName.'! You’ve got '.$returnedPoints.' points at Hyde Park Produce. That’s +5 points. Double it by scanning the bag code!';
+$message_to_reply='Welcome back '.$userName.'! +5 points, You’ve got '.$returnedPoints.' points at Hyde Park Produce! Double it by scanning your bag code!';
          }
 }
 
