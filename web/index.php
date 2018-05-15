@@ -222,7 +222,7 @@ if(!empty($referral = $input['entry'][0]['messaging'][0]['referral'])){
                   //   $facebook->sendMessage("2111480812199546", $userName." yes bot was tested redeem unset");
 
 
-                $message_to_reply='Congratulations '.$userName.'! You have successfully redeemed your $5 gift card';
+                $message_to_reply='Congratulations '.$userName.'! You have successfully redeemed your $5 gift card!';
 
 
              }
